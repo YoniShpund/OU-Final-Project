@@ -23,7 +23,7 @@ def parse_args():
     parser.add_argument('-v', '--verbose', help='Verbose',
                         required=False, default=True, type=bool)
     parser.add_argument('-l', '--logging_level', help='Logging level ',
-                        required=False, default=VerboseLoggingLevel.DEBUG, type=VerboseLoggingLevel)
+                        required=False, default=VerboseLoggingLevel.INFO, type=VerboseLoggingLevel)
     return vars(parser.parse_args())
 
 
