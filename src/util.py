@@ -1,8 +1,10 @@
 import importlib
 import os
+import sys
 from inspect import signature
 
-from .verbose_logging import *
+from pdda import logger
+from verbose_logging import *
 
 
 def util_get_files_path_by_extension(root_dir, flag='.py') -> list:
@@ -17,22 +19,39 @@ def util_get_files_path_by_extension(root_dir, flag='.py') -> list:
     return paths
 
 
-def util_validate_api_calls(filename: str, api_calls: list) -> dict:
+def util_validate_api_calls(filename: str, api_calls: list) -> int:
     for call in api_calls:
         api, params = call.split(":")
         module = importlib.import_module(api.split("..")[0])
         attributes = api.split("..")[1].split(".")
 
-        VerboseLogging.print_debug(call)
+        logger.print_debug(
+            "==================================================")
+        logger.print_debug(call)
         package_attr = module
+        found_api = None
         for idx in range(len(attributes)):
-            VerboseLogging.print_debug(package_attr)
+            logger.print_debug(str(package_attr))
 
             if attributes[-1] in dir(package_attr):
-                VerboseLogging.print_debug(
-                    attributes[-1] + ' found in ' + package_attr)
+                logger.print_debug(
+                    attributes[-1] + ' found in ' + str(package_attr))
+                found_api = package_attr
 
             package_attr = getattr(package_attr, attributes[idx])
+
+        if found_api is None:
+            # skip to next function call
+            continue
+
+        try:
+            sig = signature(package_attr)
+            logger.print_debug(str(sig))
+            logger.print_debug(os.path.abspath(module.__file__))
+
+        except Exception as e:
+            logger.print_debug(
+                f"{str(package_attr)} is probably built-in function and cannot get signature")
 
         # import_module = api.split("..") if ".." in api else api.split(".", 1)
         # module = importlib.import_module(import_module[0])
@@ -43,4 +62,4 @@ def util_validate_api_calls(filename: str, api_calls: list) -> dict:
         # print(str(func) + '(' + params + ')')
         # print(signature(func))
 
-    return {}
+    return 0

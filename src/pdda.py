@@ -1,9 +1,9 @@
 import argparse
 from multiprocessing import Pool
 
-from .api_formating import get_api_calls
-from .util import *
-from .verbose_logging import *
+from api_formating import get_api_calls
+from util import *
+from verbose_logging import *
 
 
 def dir_path(string):
@@ -23,8 +23,12 @@ def parse_args():
     parser.add_argument('-v', '--verbose', help='Verbose',
                         required=False, default=True, type=bool)
     parser.add_argument('-l', '--logging_level', help='Logging level ',
-                        required=False, default=VerboseLoggingLevel.INFO, type=VerboseLoggingLevel)
+                        required=False, default=VerboseLoggingLevel.DEBUG, type=VerboseLoggingLevel)
     return vars(parser.parse_args())
+
+
+args = parse_args()
+logger = VerboseLogging(args['verbose'], args['logging_level'])
 
 
 def check_single_file(filename):
@@ -33,17 +37,21 @@ def check_single_file(filename):
     return util_validate_api_calls(filename, func_calls_names)
 
 
-if __name__ == "__main__":
-    args = parse_args()
+def main():
     pool = Pool(args["threads"])
-    VerboseLogging.set_logging(args['verbose'], args['logging_level'])
-
     all_file_names = util_get_files_path_by_extension(args["dir"])
 
     results = pool.map(check_single_file, all_file_names)
 
-    VerboseLogging.print_info("==================================================")
-    VerboseLogging.print_info("=================== RESULT =======================")
-    VerboseLogging.print_info("==================================================")
+    logger.print_info(
+        "==================================================")
+    logger.print_info(
+        "=================== RESULT =======================")
+    logger.print_info(
+        "==================================================")
     for filename, num in zip(all_file_names, results):
-        VerboseLogging.print_info(num + ": " + filename)
+        logger.print_info(str(num) + ": " + filename)
+
+
+if __name__ == "__main__":
+    main()
