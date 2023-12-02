@@ -31,9 +31,12 @@ args = parse_args()
 logger = VerboseLogging(args['verbose'], args['logging_level'])
 
 
-def check_single_file(filename):
-    code_text = open(filename).read()
-    func_calls_names = get_api_calls(code_text)
+def check_single_file(filename) -> int:
+    try:
+        code_text = open(filename).read()
+        func_calls_names = get_api_calls(code_text)
+    except Exception as _:
+        return -1
     return util_validate_api_calls(filename, func_calls_names)
 
 
@@ -50,7 +53,10 @@ def main():
     logger.print_info(
         "==================================================")
     for filename, num in zip(all_file_names, results):
-        logger.print_info(str(num) + ": " + filename)
+        if num == -1:
+            logger.print_error(f"Couldn't find file - {filename}")
+        else:
+            logger.print_info(str(num) + " errors in - " + filename)
 
 
 if __name__ == "__main__":
