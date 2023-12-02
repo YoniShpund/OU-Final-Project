@@ -56,7 +56,7 @@ def func_call_format(func_call_names, func_to_full_path_dict) -> list:
         if name_parts[0] in func_to_full_path_dict:
             full_name = func_to_full_path_dict[name_parts[0]] + \
                 '.' + ".".join(name_parts[1:])
-            result += [full_name.rstrip('.') + ":" + keyword]
+            result += [(full_name.rstrip('.'), keyword)]
         # else:
         #     result += [name + ":" + keyword]
     return result
@@ -65,7 +65,7 @@ def func_call_format(func_call_names, func_to_full_path_dict) -> list:
 def get_api_calls(code) -> list:
     '''
         return a list of api calls in the following format:
-        <imported module>.<function name>:[param1,...]
+        <imported module>..<function name>:[param1,...]
 
         parameters list is optional in case there are parameters in the function call.
     '''
@@ -84,8 +84,8 @@ def get_api_calls(code) -> list:
             else:
                 new_func_calls_names.append((name, param))
         func_to_full_path_dict = get_api_ref_id(tree)
-        func_calls_names = list(set(func_call_format(
-            new_func_calls_names, func_to_full_path_dict)))
+        func_calls_names = func_call_format(
+            new_func_calls_names, func_to_full_path_dict)
     except (SyntaxError, ValueError):
         # to avoid non-python code
         func_calls_names = []

@@ -1,22 +1,34 @@
 import ast
 from collections import deque
 
+from parameter import *
+
 
 class KeyWordVisitor(ast.NodeVisitor):
     '''
-    visit keyword arguments (parameters passed to functions)
+    visit arguments (parameters passed to functions)
     '''
 
     def __init__(self):
         self._name = []
+        self.skip = True
 
     @property
     def name(self):
-        return ",".join(self._name)
+        return self._name
+
+    def visit_Name(self, node):
+        if not self.skip and node.id is not None:
+            self._name.append(Parameter(node.id, ParameterType.LOCAL_PARAM))
+        self.skip = False
+
+    def visit_Constant(self, node):
+        if node.value is not None:
+            self._name.append(Parameter(node.value, ParameterType.LOCAL_CONST))
 
     def visit_keyword(self, node):
         if node.arg is not None:
-            self._name.append(node.arg)
+            self._name.append(Parameter(node.arg, ParameterType.KEYWORD))
 
 
 class FuncCallVisitor(ast.NodeVisitor):
@@ -62,5 +74,5 @@ def get_func_calls(tree) -> list:
                 func_calls += [(call_visitor.name, keyword_visitor.name)]
             except:
                 # no keyword arguments found
-                func_calls += [(call_visitor.name, "")]
+                func_calls += [(call_visitor.name, [])]
     return func_calls
