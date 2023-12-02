@@ -60,7 +60,7 @@ def util_validate_api_calls(filename: str, api_calls: list) -> int:
             logger.print_debug(str(sig))
             logger.print_debug(os.path.abspath(module.__file__))
 
-            inner_error_count = analyze_parameters(api, params, sig)
+            inner_error_count = _analyze_parameters(api, params, sig)
 
             if inner_error_count > 0:
                 error_count += inner_error_count
@@ -73,7 +73,7 @@ def util_validate_api_calls(filename: str, api_calls: list) -> int:
     return error_count
 
 
-def analyze_parameters(api: str, params: list, sig: signature) -> int:
+def _analyze_parameters(api: str, params: list, sig: signature) -> int:
     inner_error_count = 0
 
     one_asterisk = len([1 for param in sig.parameters.values()
