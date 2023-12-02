@@ -19,16 +19,9 @@ class VerboseLoggingLevel(Enum):
 
 class VerboseLogging:
 
-    # VERBOSE = False
-    # VERBOSE_LEVEL = VerboseLoggingLevel.WARN
-
     def __init__(self, verbose: bool, logging_level: VerboseLoggingLevel) -> None:
         self.VERBOSE = verbose
         self.VERBOSE_LEVEL = logging_level
-
-    # def set_logging(self, verbose: bool, logging_level: VerboseLoggingLevel):
-    #     VerboseLogging.VERBOSE = verbose
-    #     VerboseLogging.VERBOSE_LEVEL = logging_level
 
     def __print_verbose(self, msg: str) -> None:
         if (self.VERBOSE):
@@ -36,16 +29,16 @@ class VerboseLogging:
 
     def print_debug(self, msg: str) -> None:
         if (self.VERBOSE_LEVEL >= VerboseLoggingLevel.DEBUG):
-            self.__print_verbose(colored("[debug] ", None) + msg)
+            self.__print_verbose(colored("[debug] " + msg, "blue"))
 
     def print_info(self, msg: str) -> None:
         if (self.VERBOSE_LEVEL >= VerboseLoggingLevel.INFO):
-            self.__print_verbose(colored("[info] ", None) + msg)
+            self.__print_verbose(colored("[info] " + msg))
 
     def print_warn(self, msg: str) -> None:
         if (self.VERBOSE_LEVEL >= VerboseLoggingLevel.WARN):
-            self.__print_verbose(colored("[warn] ", 'yellow') + msg)
+            self.__print_verbose(colored("[warn] " + msg, 'yellow'))
 
     def print_error(self, msg: str) -> None:
         if (self.VERBOSE_LEVEL >= VerboseLoggingLevel.ERROR):
-            self.__print_verbose(colored("[error] ", 'red') + msg)
+            self.__print_verbose(colored("[error] " + msg, 'red'))
