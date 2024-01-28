@@ -2,7 +2,7 @@ import importlib
 import os
 from inspect import signature
 
-from analyze import analyze_parameters
+from analyze import analyze_module_file, analyze_parameters
 from pdda import logger
 from verbose_logging import *
 
@@ -19,17 +19,18 @@ def util_get_files_path_by_extension(root_dir, flag='.py') -> list:
     return paths
 
 
-def util_validate_api_calls(filename: str, api_calls: list) -> int:
+def util_validate_api_calls(filename: str, api_calls: list) -> tuple:
 
     logger.print_info(
         "==================================================")
     logger.print_info(f"Analyzing - {filename}")
 
     error_count = 0
+    warn_count = 0
     for api, params in api_calls:
         inner_error_count = 0
         try:
-            logger.print_info(f"Checking API - {api.split('..')[0]}")
+            logger.print_debug(f"Checking API - {api.split('..')[0]}")
 
             module = importlib.import_module(api.split("..")[0])
             attributes = api.split("..")[1].split(".")
@@ -61,10 +62,13 @@ def util_validate_api_calls(filename: str, api_calls: list) -> int:
 
             if inner_error_count > 0:
                 error_count += inner_error_count
-                continue
+                break
+
+            warn_count += analyze_module_file(
+                os.path.abspath(module.__file__), package_attr)
 
         except Exception as _:
-            logger.print_warn(
-                f"API is probably built-in function (or private implementation) and cannot get signature")
+            logger.print_info(
+                f"API ({api.split('..')[1].split('.')[-1]}) is probably built-in function (or private implementation) and cannot get signature")
 
-    return error_count
+    return (error_count, warn_count)

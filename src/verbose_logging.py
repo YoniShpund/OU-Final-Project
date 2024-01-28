@@ -42,3 +42,7 @@ class VerboseLogging:
     def print_error(self, msg: str) -> None:
         if (self.VERBOSE_LEVEL >= VerboseLoggingLevel.ERROR):
             self.__print_verbose(colored("[error] " + msg, 'red'))
+
+    def print_results(self, error_msg: str, warn_msg: str, rest_msg: str):
+        self.__print_verbose(
+            f"{colored(error_msg, 'red')}, {colored(warn_msg, 'yellow')} {colored(rest_msg)}")

@@ -31,7 +31,7 @@ args = parse_args()
 logger = VerboseLogging(args['verbose'], args['logging_level'])
 
 
-def check_single_file(filename) -> int:
+def check_single_file(filename) -> tuple:
     try:
         code_text = open(filename).read()
         func_calls_names = get_api_calls(code_text)
@@ -56,7 +56,8 @@ def main():
         if num == -1:
             logger.print_error(f"Couldn't find file - {filename}")
         else:
-            logger.print_info(str(num) + " errors in - " + filename)
+            logger.print_results(
+                str(num[0]) + " errors", str(num[1]) + " warnings", "in - " + filename)
 
 
 if __name__ == "__main__":
