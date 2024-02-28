@@ -70,7 +70,6 @@ def _validate_keyword(param: inspect.Parameter, keyword_names: list[str]) -> boo
 def analyze_module_file(module_file: str, package_attr) -> int:
     inner_error_count = 0
     code_text = open(module_file).read()
-    # func_calls_names = get_api_calls(code_text)
     func_calls_names = list(dict.fromkeys([val for val, _ in get_api_calls(code_text)]))
     source_code = inspect.getsource(package_attr)
 
@@ -79,7 +78,7 @@ def analyze_module_file(module_file: str, package_attr) -> int:
             logger.print_debug(api)
 
             if "warn(" in source_code:
-                logger.print_warn("Warning found in " + str(package_attr))
+                logger.print_warn("Warning found in the code of " + str(package_attr))
                 inner_error_count += 1
 
     return inner_error_count

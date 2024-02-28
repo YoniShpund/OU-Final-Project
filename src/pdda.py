@@ -20,15 +20,18 @@ def parse_args():
                         required=True, type=dir_path)
     parser.add_argument('-t', '--threads', help='Number of threads',
                         required=False, default=20, type=int)
-    parser.add_argument('-v', '--verbose', help='Verbose',
-                        required=False, default=True, type=bool)
-    parser.add_argument('-l', '--logging_level', help='Logging level ',
-                        required=False, default=VerboseLoggingLevel.INFO, type=VerboseLoggingLevel)
+    parser.add_argument('-v', '--verbose', help='Allow all logs',
+                        required=False, default=False, type=bool)
+    parser.add_argument('-l', '--logging_level', help='Logging level (ERROR = 1, WARN = 2, INFO = 3, DEBUG = 4)',
+                        required=False, default=VerboseLoggingLevel.INFO.value, type=int,
+                        choices=range(VerboseLoggingLevel.MIN.value,
+                                      VerboseLoggingLevel.MAX.value + 1),
+                        metavar=f"[{VerboseLoggingLevel.MIN.value}-{VerboseLoggingLevel.MAX.value}]")
     return vars(parser.parse_args())
 
 
 args = parse_args()
-logger = VerboseLogging(args['verbose'], args['logging_level'])
+logger = VerboseLogging(args['verbose'], int(args['logging_level']))
 
 
 def check_single_file(filename) -> tuple:
@@ -46,12 +49,9 @@ def main():
 
     results = pool.map(check_single_file, all_file_names)
 
-    logger.print_info(
-        "==================================================")
-    logger.print_info(
-        "=================== RESULT =======================")
-    logger.print_info(
-        "==================================================")
+    print("==================================================")
+    print("=================== RESULT =======================")
+    print("==================================================")
     for filename, num in zip(all_file_names, results):
         if num == -1:
             logger.print_error(f"Couldn't find file - {filename}")

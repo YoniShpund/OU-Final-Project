@@ -6,43 +6,41 @@ from termcolor import colored
 
 class VerboseLoggingLevel(Enum):
     def __le__(self, b):
-        return self.value <= b.value
+        return self.value <= b
 
     def __ge__(self, b):
-        return self.value >= b.value
+        return self.value >= b
 
     ERROR = 1
     WARN = 2
     INFO = 3
     DEBUG = 4
 
+    MIN = ERROR
+    MAX = DEBUG
 
 class VerboseLogging:
 
-    def __init__(self, verbose: bool, logging_level: VerboseLoggingLevel) -> None:
+    def __init__(self, verbose: bool, logging_level: int) -> None:
         self.VERBOSE = verbose
         self.VERBOSE_LEVEL = logging_level
 
-    def __print_verbose(self, msg: str) -> None:
-        if (self.VERBOSE):
-            print(msg)
-
     def print_debug(self, msg: str) -> None:
-        if (self.VERBOSE_LEVEL >= VerboseLoggingLevel.DEBUG):
-            self.__print_verbose(colored("[debug] " + msg, "blue"))
+        if (self.VERBOSE or self.VERBOSE_LEVEL >= VerboseLoggingLevel.DEBUG):
+            print(colored("[debug] " + msg, "blue"))
 
     def print_info(self, msg: str) -> None:
-        if (self.VERBOSE_LEVEL >= VerboseLoggingLevel.INFO):
-            self.__print_verbose(colored("[info] " + msg))
+        if (self.VERBOSE or self.VERBOSE_LEVEL >= VerboseLoggingLevel.INFO):
+            print(colored("[info] " + msg))
 
     def print_warn(self, msg: str) -> None:
-        if (self.VERBOSE_LEVEL >= VerboseLoggingLevel.WARN):
-            self.__print_verbose(colored("[warn] " + msg, 'yellow'))
+        if (self.VERBOSE or self.VERBOSE_LEVEL >= VerboseLoggingLevel.WARN):
+            print(colored("[warn] " + msg, 'yellow'))
 
     def print_error(self, msg: str) -> None:
-        if (self.VERBOSE_LEVEL >= VerboseLoggingLevel.ERROR):
-            self.__print_verbose(colored("[error] " + msg, 'red'))
+        if (self.VERBOSE or self.VERBOSE_LEVEL >= VerboseLoggingLevel.ERROR):
+            print(colored("[error] " + msg, 'red'))
 
     def print_results(self, error_msg: str, warn_msg: str, rest_msg: str):
-        self.__print_verbose(
+        print(
             f"{colored(error_msg, 'red')}, {colored(warn_msg, 'yellow')} {colored(rest_msg)}")
