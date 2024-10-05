@@ -16,7 +16,7 @@ def dir_path(string):
 def parse_args():
     parser = argparse.ArgumentParser(
         description='Project Dependencies Deprecations Analyzer')
-    parser.add_argument('-d', '--dir', help='Porject to analyze full path',
+    parser.add_argument('-d', '--dir', help='Project to analyze - full path',
                         required=True, type=dir_path)
     parser.add_argument('-t', '--threads', help='Number of threads',
                         required=False, default=20, type=int)
