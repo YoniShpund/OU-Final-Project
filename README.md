@@ -67,115 +67,24 @@ python pdda.py ./my-python-project
 [warn] Warning found in the code of <class 'argparse.ArgumentParser'>
 [warn] Warning found in the code of <class 'argparse.ArgumentParser'>
 [warn] Warning found in the code of <class 'argparse.ArgumentParser'>
-[info] API (masTest) is probably built-in function (or private implementation) and cannot get signature
-[info] API (buildGlobal) is probably built-in function (or private implementation) and cannot get signature
-[info] API (buildRpiConfig) is probably built-in function (or private implementation) and cannot get signature
-[info] API (buildCommand) is probably built-in function (or private implementation) and cannot get signature
-[info] API (buildScenario) is probably built-in function (or private implementation) and cannot get signature
-[info] API (buildScenarioRun) is probably built-in function (or private implementation) and cannot get signature
-[info] API (buildScenarioDelete) is probably built-in function (or private implementation) and cannot get signature
 [info] ==================================================
 [info] Analyzing - /path/to/your/python/project/masModeBuild.py
-[info] API (writer) is probably built-in function (or private implementation) and cannot get signature
-[info] API (writerow) is probably built-in function (or private implementation) and cannot get signature
-[info] API (remove) is probably built-in function (or private implementation) and cannot get signature
-[info] API (scandir) is probably built-in function (or private implementation) and cannot get signature
-[info] API (split) is probably built-in function (or private implementation) and cannot get signature
-[info] API (scandir) is probably built-in function (or private implementation) and cannot get signature
-[info] API (split) is probably built-in function (or private implementation) and cannot get signature
-[info] API (scandir) is probably built-in function (or private implementation) and cannot get signature
-[info] API (split) is probably built-in function (or private implementation) and cannot get signature
-[info] API (split) is probably built-in function (or private implementation) and cannot get signature
-[info] API (split) is probably built-in function (or private implementation) and cannot get signature
-[info] API (split) is probably built-in function (or private implementation) and cannot get signature
 [info] ==================================================
 [info] Analyzing - /path/to/your/python/project/masModeTest.py
-[info] API (createMainLogger) is probably built-in function (or private implementation) and cannot get signature
-[info] API (runScenario) is probably built-in function (or private implementation) and cannot get signature
-[info] API (LoadConfigGlobal) is probably built-in function (or private implementation) and cannot get signature
-[info] API (LoadConfigCommands) is probably built-in function (or private implementation) and cannot get signature
-[info] API (LoadConfigScenarios) is probably built-in function (or private implementation) and cannot get signature
-[info] API (RPI) is probably built-in function (or private implementation) and cannot get signature
-[info] API (Frequency) is probably built-in function (or private implementation) and cannot get signature
 [info] ==================================================
 [info] Analyzing - /path/to/your/python/project/modAllocResource.py
-[info] API (Lock) is probably built-in function (or private implementation) and cannot get signature
-[info] API (Lock) is probably built-in function (or private implementation) and cannot get signature
 [info] ==================================================
 [info] Analyzing - /path/to/your/python/project/modConfig.py
-[info] API (split) is probably built-in function (or private implementation) and cannot get signature
-[info] API (scandir) is probably built-in function (or private implementation) and cannot get signature
-[info] API (reader) is probably built-in function (or private implementation) and cannot get signature
 [info] ==================================================
 [info] Analyzing - /path/to/your/python/project/modDefines.py
 [info] ==================================================
 [info] Analyzing - /path/to/your/python/project/modErrors.py
 [info] ==================================================
 [info] Analyzing - /path/to/your/python/project/modLogging.py
-[info] API (setLevel) is probably built-in function (or private implementation) and cannot get signature
-[info] API (addHandler) is probably built-in function (or private implementation) and cannot get signature
-[info] API (addHandler) is probably built-in function (or private implementation) and cannot get signature
-[info] API (now) is probably built-in function (or private implementation) and cannot get signature
-[info] API (addHandler) is probably built-in function (or private implementation) and cannot get signature
-[info] API (setLevel) is probably built-in function (or private implementation) and cannot get signature
-[info] API (setLevel) is probably built-in function (or private implementation) and cannot get signature
-[info] API (removeHandler) is probably built-in function (or private implementation) and cannot get signature
-[info] API (strftime) is probably built-in function (or private implementation) and cannot get signature
 [info] ==================================================
 [info] Analyzing - /path/to/your/python/project/modRPI.py
 [info] ==================================================
 [info] Analyzing - /path/to/your/python/project/modScenario.py
-[info] API (createScenarioSummaryLogger) is probably built-in function (or private implementation) and cannot get signature       
-[info] API (createDebugLogger) is probably built-in function (or private implementation) and cannot get signature
-[info] API (removeLogger) is probably built-in function (or private implementation) and cannot get signature
-[info] API (removeLogger) is probably built-in function (or private implementation) and cannot get signature
-[info] API (disconnectRPI) is probably built-in function (or private implementation) and cannot get signature
-[info] API (RunException) is probably built-in function (or private implementation) and cannot get signature
-[info] API (debug) is probably built-in function (or private implementation) and cannot get signature
-[info] API (error) is probably built-in function (or private implementation) and cannot get signature
-[info] API (removeLogger) is probably built-in function (or private implementation) and cannot get signature
-[info] API (removeLogger) is probably built-in function (or private implementation) and cannot get signature
-[info] API (RunException) is probably built-in function (or private implementation) and cannot get signature
-[info] API (RunException) is probably built-in function (or private implementation) and cannot get signature
-[info] API (connectRPI) is probably built-in function (or private implementation) and cannot get signature
-[info] API (error) is probably built-in function (or private implementation) and cannot get signature
-[info] API (RunException) is probably built-in function (or private implementation) and cannot get signature
-[info] API (debug) is probably built-in function (or private implementation) and cannot get signature
-[info] API (execRPI) is probably built-in function (or private implementation) and cannot get signature
-[info] API (RunException) is probably built-in function (or private implementation) and cannot get signature
-[info] API (RunException) is probably built-in function (or private implementation) and cannot get signature
-[info] API (info) is probably built-in function (or private implementation) and cannot get signature
-[info] API (error) is probably built-in function (or private implementation) and cannot get signature
-[info] API (RunException) is probably built-in function (or private implementation) and cannot get signature
-[info] API (RunException) is probably built-in function (or private implementation) and cannot get signature
-[info] API (debug) is probably built-in function (or private implementation) and cannot get signature
-[info] API (execRPI) is probably built-in function (or private implementation) and cannot get signature
-[info] API (debug) is probably built-in function (or private implementation) and cannot get signature
-[info] API (RunException) is probably built-in function (or private implementation) and cannot get signature
-[info] API (createScenarioUnitLogName) is probably built-in function (or private implementation) and cannot get signature
-[info] API (fileReceiveRPI) is probably built-in function (or private implementation) and cannot get signature
-[info] API (RunException) is probably built-in function (or private implementation) and cannot get signature
-[info] API (RunException) is probably built-in function (or private implementation) and cannot get signature
-[info] API (RunException) is probably built-in function (or private implementation) and cannot get signature
-[info] API (RunException) is probably built-in function (or private implementation) and cannot get signature
-[info] API (RunException) is probably built-in function (or private implementation) and cannot get signature
-[info] API (RunException) is probably built-in function (or private implementation) and cannot get signature
-[info] API (debug) is probably built-in function (or private implementation) and cannot get signature
-[info] API (debug) is probably built-in function (or private implementation) and cannot get signature
-[info] API (debug) is probably built-in function (or private implementation) and cannot get signature
-[info] API (debug) is probably built-in function (or private implementation) and cannot get signature
-[info] API (debug) is probably built-in function (or private implementation) and cannot get signature
-[info] API (debug) is probably built-in function (or private implementation) and cannot get signature
-[info] API (RunException) is probably built-in function (or private implementation) and cannot get signature
-[info] API (debug) is probably built-in function (or private implementation) and cannot get signature
-[info] API (debug) is probably built-in function (or private implementation) and cannot get signature
-[info] API (debug) is probably built-in function (or private implementation) and cannot get signature
-[info] API (RunException) is probably built-in function (or private implementation) and cannot get signature
-[info] API (debug) is probably built-in function (or private implementation) and cannot get signature
-[info] API (RunException) is probably built-in function (or private implementation) and cannot get signature
-[info] API (RunException) is probably built-in function (or private implementation) and cannot get signature
-[info] API (RunException) is probably built-in function (or private implementation) and cannot get signature
-[info] API (RunException) is probably built-in function (or private implementation) and cannot get signature
 ==================================================
 =================== RESULT =======================
 ==================================================
