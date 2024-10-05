@@ -201,7 +201,7 @@ Contributions are welcome! If you'd like to contribute:
 1. Open a pull request.
 
 ## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/YoniShpund/OU-Final-Project/blob/main/LICENSE) file for details.
 
 ## Contact
 If you have any questions, feel free to contact me through GitHub Issues.
